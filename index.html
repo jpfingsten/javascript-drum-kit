@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -56,28 +57,6 @@
   <audio data-key="74" src="sounds/snare.wav"></audio>
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
-
-  <script>
-      function playSound (e) {
-          const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-          const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
-          if (!audio) return; // stops the function from running altogether if no audio file associated with pressed key's key code
-          audio.currentTime = 0; // rewinds audio file to beginning to allow plays in quick succession
-          audio.play();
-          key.classList.add("playing");
-      };
-
-      function removeTransition(e) {
-          if (e.propertyName !== "transform") return; // skip the transitionend event if it isn't a transform
-          this.classList.remove("playing");
-      }
-
-      const keys = document.querySelectorAll(".key");
-      keys.forEach(key => key.addEventListener("transitionend", removeTransition));
-
-      document.addEventListener("keydown", playSound);
-</script>
-
 
 </body>
 </html>
